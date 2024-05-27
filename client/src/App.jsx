@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-   <Container disableGutters maxWidth={false} sx={{ bgcolor : '#34495e' }}>
+   <Container disableGutters maxWidth={false} sx={{ height : 'fit-content', bgcolor : '#34495e' }}>
      <ToastContainer
       position="top-right"
       autoClose={5000}

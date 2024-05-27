@@ -4,15 +4,14 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+
 import Divider from '@mui/material/Divider';
+import logo from '../../../assets/logo.png'
+import { Link } from 'react-router-dom';
 const HEADER_TEXT = [
   {
     id : 1,
@@ -63,6 +62,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function DrawRight() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [active, setActive] = React.useState(1)
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -76,7 +76,7 @@ export default function DrawRight() {
   return (
     <Box  sx={{ display: 'flex'}}>
       <AppBar position="static" open={open} sx={{ bgcolor : '#000000' }}>
-        <Toolbar >
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -89,35 +89,38 @@ export default function DrawRight() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      
       <Drawer
         sx={{
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
+              bgcolor : '#000000'
           },
         }}
         anchor="right"
         open={open}
       >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+        <DrawerHeader sx={{ display : 'flex', justifyContent : 'space-between', pr : 2 }}>
+          <IconButton sx={{ color : 'white' }} onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
+          <Box sx={{ color : 'white' }}>
+           <img width={140} height={80} src={logo} alt="" />
+          </Box>
         </DrawerHeader>
         <Divider />
-        <List>
-          {HEADER_TEXT.map((el) => (
-            <ListItem key={el.id} disablePadding>
-              <ListItemButton>
-                {/* <ListItemIcon>
-                  {el.id % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon> */}
-                <ListItemText primary={el.name} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        {HEADER_TEXT?.map((el) => (
+        <Link style={{ color: 'white',
+            padding : '12px 16px',
+            alignContent : 'center',
+            fontWeight : 600,
+            fontSize : 15,
+            borderRadius : '0px',
+            textDecoration : 'none',
+            background:  active ===  el?.id ? 'rgb(254 179 7)' : '' }} key={el?.id} onClick={() => setActive(el?.id)} >
+           {el?.name}  
+        </Link>
+      ))}
       </Drawer>
     </Box>
   );

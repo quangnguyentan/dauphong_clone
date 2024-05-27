@@ -1,6 +1,6 @@
 import  { useState } from 'react'
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import DrawRight from '../Drawer/Drawer';
 const HEADER_TEXT = [
     {
@@ -35,19 +35,17 @@ function Menu() {
       }}
      >
       {HEADER_TEXT?.map((el) => (
-        <Link key={el?.id} onClick={() => setActive(el?.id)} href='#'  sx={{
-            color: 'white',
-            px : 2,
-            py : 1,
+        <Link style={{ color: 'white',
+            padding : '8px 8px',
             alignContent : 'center',
             fontWeight : 600,
             fontSize : 15,
             borderRadius : '0px',
             textDecoration : 'none',
-            background:  active ===  el?.id ? 'rgb(254 179 7)' : '' }}>
-            {el?.name}     
+            background:  active ===  el?.id ? 'rgb(254 179 7)' : '' }} key={el?.id} onClick={() => setActive(el?.id)} >
+           
+           {el?.name}  
         </Link>
-
       ))}
     </Box>
     <Box

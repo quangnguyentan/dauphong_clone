@@ -2,14 +2,14 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Menu from './Menus/Menu'; 
 import logo from '../../assets/logo.png'
-import '../index.css';
+import '../../index.css';
 import Typography from '@mui/material/Typography';
 import PhoneIcon from '@mui/icons-material/Phone';
 function AppBar() {
 
 
   return (
-    <Box sx={{  height : (theme) =>theme.football.appBarHeight, width: '100%', overflowY : 'hidden', overflowX: 'auto', '&::webkit-scrollbar-track' : {
+    <Box sx={{ height : (theme) =>theme.football.appBarHeight, width: '100%', overflowY : 'hidden', overflowX: 'auto', '&::webkit-scrollbar-track' : {
       m : 4
     }, backgroundColor : '#000000' , p : 4, display : 'flex', alignItems : 'center', justifyContent : 'space-between'  }} >
           <Link href='/' sx={{ textDecoration : 'none',  color : 'white' }}>

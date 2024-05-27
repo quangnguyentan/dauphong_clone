@@ -7,12 +7,15 @@ import { Outlet } from 'react-router-dom'
 import Footer from '../../components/Footer/Footer'
 function Public() {
   return (
-    <Container  disableGutters maxWidth={false} sx={{ height : '100vh'}}>
-      <AppBar/>
-      <Marquee/>
+    <Container disableGutters maxWidth={false}>
+      <Box sx={{ position : 'sticky', top : 0, }}>
+        <AppBar/>
+        <Marquee/>
+      </Box>
       <Banner/>
-      <Outlet/>
-      <Box sx={{ height : (theme) => theme.football.FOOTER_BANNER_HEIGHT, width : '100%' }}>
+        
+        <Outlet/>
+      <Box sx={{ height : (theme) => theme.football.FOOTER_BANNER_HEIGHT, display : { md : 'flex', xs : 'none'}}}>
         <Footer/>
       </Box>
     </Container>
