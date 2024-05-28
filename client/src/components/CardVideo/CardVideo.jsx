@@ -3,11 +3,13 @@ import  Box from '@mui/material/Box'
 import CustomGrid from '../CustomGrid/CustomGrid'
 import BannerBottomVideo from '../../assets/banner_video.gif'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import BannerVideoFooter from '../../assets/bannerVideoFooter.gif'
+
 function CardVideo() {
   return (
      <Box sx={{ py : { md : 1, xs : 0}}} >
-      <Box sx={{ display : { md : 'flex' } }}>
-        <Box sx={{ width : {md : '70%', xs : '100%'}, height : '430px'}} >
+      <Box sx={{ display : { md : 'flex' }, gap : 2 }}>
+        <Box sx={{ width : {md : '70%', xs : '100%'}, height : 'fit-content'}} >
         {/* <ReactPlayer width='100%'
             height='100%' playIcon volume={1} controls={true} url={
           [
@@ -20,19 +22,19 @@ function CardVideo() {
           style={{ objectFit : 'cover' }}
             height='100%' playing playIcon={<PlayArrowIcon/>} url={
           [
-            'https://www.youtube.com/watch?v=ZPHVFo3C3QU',
-            'https://www.youtube.com/watch?v=ZPHVFo3C3QU',
             'https://sovotv.live/uploads/resources/videos/introlivesovo.mp4',
-
+    
           ]
         }/>
+         <img src={BannerVideoFooter} style={{width : '100%', objectFit : 'contain' }} alt="" /> 
         </Box>
-        <CustomGrid size={10} flexDirectionStyle headerBox />
+        <CustomGrid size={12} flexDirectionStyle headerBox />
+
       </Box>
-     <Box sx={{ width : '100%', py :  { md :  1, xs : 0} }}>
-     <img src={BannerBottomVideo} style={{ height : '70px', width : '49%' }} alt="" /> 
-     <img src={BannerBottomVideo} style={{ height : '70px', width : '49%' }} alt="" />
-     </Box>
+      <Box sx={{ width : '100%', py :  { md :  1, xs : 0} }}>
+          <img src={BannerBottomVideo} style={{ height : '70px', width : '50%', objectFit : 'cover' }} alt="" /> 
+          <img src={BannerBottomVideo} style={{ height : '70px', width : '50%', objectFit : 'cover' }} alt="" />
+      </Box>
      </Box>
   )
 }

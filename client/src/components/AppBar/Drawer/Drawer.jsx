@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+
 import Drawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,31 +10,33 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-
 import Divider from '@mui/material/Divider';
 import logo from '../../../assets/logo.png'
 import { Link } from 'react-router-dom';
+import path from '../../../utils/path';
 const HEADER_TEXT = [
   {
     id : 1,
     name : 'TRANG CHỦ',
-    link : '/'
+    link : `${path.HOME}`
   },
   {
     id : 2,
     name : 'VIDEO HIGHTLIGHT',
-    link : '/video_hightlight'
+    link : `/${path.VIDEO_HIGHLIGHT}`
+
   },{
     id : 3,
     name : 'TIN TỨC',
-    link : '/tintuc'
+    link : `/${path.TIN_TUC}`
+
   },{
     id : 4,
     name : 'SOI KÈO',
-    link : '/soikeo'
+    link : `/${path.SOI_KEO}`
+
   },
 ]
-
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -66,30 +70,33 @@ export default function DrawRight() {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
+ 
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const container = window !== undefined ? () => window().document.body : undefined;
-  console.log(container)
-  
   return (
-    <Box  sx={{ display: 'flex'}}>
-      <AppBar position="static" open={open} sx={{ bgcolor : '#000000' }}>
-        <Toolbar>
+    <Container  
+     sx={{ display: 'flex', justifyContent : 'end',}}>
+     
+      <AppBar open={open} sx={{ bgcolor : '#2b2b2b', boxShadow : 'none', position : 'static' }}>
+        <Toolbar >
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            edge="end"
+            edge='end'
             onClick={handleDrawerOpen}
             size='large'
             sx={{ ...(open && { display: 'none'}), border : 'none' }}
+            
           >
-            <MenuIcon />
+           <Box sx={{ position : 'relative' }}>
+            <MenuIcon sx={{ position : 'absolute', top : '-10px', right : '-70px'}}/>
+           </Box>
           </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
+        onClose={handleDrawerClose}
         sx={{
           flexShrink: 0,
           '& .MuiDrawer-paper': {
@@ -110,7 +117,7 @@ export default function DrawRight() {
         </DrawerHeader>
         <Divider />
         {HEADER_TEXT?.map((el) => (
-        <Link style={{ color: 'white',
+        <Link to={el.link} style={{ color: 'white',
             padding : '12px 16px',
             alignContent : 'center',
             fontWeight : 600,
@@ -122,6 +129,6 @@ export default function DrawRight() {
         </Link>
       ))}
       </Drawer>
-    </Box>
+    </Container>
   );
 }

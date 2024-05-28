@@ -1,7 +1,7 @@
 import {
     experimental_extendTheme as extendTheme,
   } from '@mui/material/styles';
-const APP_BAR_HEADER_HEIGHT =  '100px'
+const APP_BAR_HEADER_HEIGHT =  '70px'
 const APP_BAR_MARQUEE_HEIGHT = '35px'
 const APP_BAR_BANNER_HEIGHT = '90px'
 const FOOTER_BANNER_HEIGHT = '80px'

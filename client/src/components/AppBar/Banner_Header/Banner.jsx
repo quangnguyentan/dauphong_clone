@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
 import bannerLeft from '../../../assets/banner_header_left.gif'
 import bannerRight from '../../../assets/banner_header_right.gif'
-import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+
 
 function Banner() {
   return (
-   <Box sx={{ display : { md : 'inline-block' , xs : 'none'}, width : { xs : '100%', md : '100%' }, height : (theme) => theme.football.bannerHeight}}>
-        <Link>
-            <img src={bannerLeft} alt="logo" style={{ objectFit : 'cover', width : '50%', height : '90px' }} />  
+   <Container disableGutters maxWidth='lg' fixed sx={{ height :  { xs : '0px', md : '90px' }, width : { xs : '0px', md : '70%'}}}>
+        <Link> 
+            <img src={bannerLeft} alt="logo" style={{ objectFit : 'contain', width : '50%', height : '100%' }} />  
         </Link> 
         <Link>
-            <img src={bannerRight} alt="logo"  style={{ objectFit : 'cover', width : '50%', height : '90px' }} />
+            <img src={bannerRight} alt="logo"  style={{ objectFit : 'contain', width : '50%', height : '100%' }} />
         </Link> 
-   </Box>
+   </Container>
   )
 }
 
