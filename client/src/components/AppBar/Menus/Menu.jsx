@@ -11,7 +11,7 @@ const HEADER_TEXT = [
     },
     {
       id : 2,
-      name : 'VIDEO HIGHTLIGHT',
+      name : 'VIDEO HIGHLIGHT',
       link : `/${path.VIDEO_HIGHLIGHT}`
 
     },{
@@ -35,7 +35,7 @@ function Menu() {
     <Box
       sx={{
         display : { xs : 'none', md : 'flex'},
-        gap : 1,
+        gap : 2,
       }}
      >
 
@@ -46,10 +46,12 @@ function Menu() {
             fontWeight : 600,
             fontSize : 15,
             borderRadius : '2px',
+            minWidth : '30px',
+            minHeight: 'fit-content',
             textDecoration : 'none',
             background:  active ===  el?.id  ? 'linear-gradient(50deg, #ff6427, #770000)' : '' }} key={el?.id} onClick={() => setActive(el?.id)} 
             >
-           {el?.name}  
+            {el?.name} 
         </Link>
       ))}
     </Box>

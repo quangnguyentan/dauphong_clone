@@ -22,7 +22,7 @@ const HEADER_TEXT = [
   },
   {
     id : 2,
-    name : 'VIDEO HIGHTLIGHT',
+    name : 'VIDEO HIGHLIGHT',
     link : `/${path.VIDEO_HIGHLIGHT}`
 
   },{

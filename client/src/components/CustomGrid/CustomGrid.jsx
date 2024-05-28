@@ -20,7 +20,7 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
   }))
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Box sx={{ p : 0.5, mb : 2, color : 'white', width : '100%', border : 1, borderColor : 'white', bgcolor : 'linear-gradient(50deg, #ff6427, #770000)', borderRadius : '5px', fontSize : '13px', fontWeight : 600, display : headerBox ? { md : 'flex' , xs : 'none'} : 'none' , justifyContent : 'center' }}>
+      <Box sx={{ p : 0.5, mb : 2, color : 'white', width : '100%', border : 1, borderColor : 'white', background : 'linear-gradient(50deg, #ff6427, #770000)', borderRadius : '5px', fontSize : '13px', fontWeight : 600, display : headerBox ? { md : 'flex' , xs : 'none'} : 'none' , justifyContent : 'center' }}>
         CÁC TRẬN HOT
       </Box>
        {size > 3 ?  
