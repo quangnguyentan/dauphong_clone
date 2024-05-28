@@ -11,10 +11,9 @@ function Public() {
       <Box sx={{ position : 'sticky', top : 0, }}>
         <AppBar/>
         <Marquee/>
+        <Banner/>
       </Box>
-      <Banner/>
-        
-        <Outlet/>
+      <Outlet/>
       <Box sx={{ height : (theme) => theme.football.FOOTER_BANNER_HEIGHT, display : { md : 'flex', xs : 'none'}}}>
         <Footer/>
       </Box>

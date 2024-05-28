@@ -4,14 +4,13 @@ import Grid from '@mui/material/Grid'
 import { experimentalStyled as styled } from '@mui/material/styles'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 import '../../index.css'
 import Chip from '@mui/material/Chip'
 function CustomGrid({ size, flexDirectionStyle, headerBox }) {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
     height : 'fit-cotent'
@@ -67,7 +66,7 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
                 <Typography sx={{ fontSize : '15px', fontWeight : 600 }}>
                   Chưa diễn ra 
                 </Typography>
-                <Button className='button_info' sx={{ borderRadius : '10px', fontWeight : 600, width : '90px', height: '30px', fontSize : '10px' }} variant="contained">Đặt cược</Button>
+                <Chip label='Đặt Cược' className='button_info' sx={{ borderRadius : '10px', fontWeight : 600, width : '90px', height: '30px', fontSize : '10px' }} />
                 </Box>
           </Item>
           </Grid>
@@ -119,7 +118,7 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
                 <Typography sx={{ fontSize : '15px', fontWeight : 600 }}>
                   Chưa diễn ra 
                 </Typography>
-                <Button className='button_info' sx={{ borderRadius : '10px', fontWeight : 600, width : '90px', height: '30px', fontSize : '10px' }} variant="contained">Đặt cược</Button>
+                <Chip label='Đặt Cược' className='button_info' sx={{ borderRadius : '10px', fontWeight : 600, width : '90px', height: '30px', fontSize : '10px' }} />
                 </Box>
           </Item>
           </Grid>
@@ -128,7 +127,7 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
         
         </Box> : <Box sx={{ flexGrow: 1}}>
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12 }}>
-        {Array.from(Array(18)).map((_, index) => (
+        {Array.from(Array(6)).map((_, index) => (
           <Grid item xs={2} sm={4} md={4} key={index}>
           <Item sx={{ borderRadius: '10px', border : 1, borderColor : 'rgb(254 179 7)', bgcolor : '#000000', px : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer', '&:hover' : {
                 transform : 'translateY(-10px)',
