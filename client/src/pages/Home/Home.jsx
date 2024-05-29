@@ -6,9 +6,12 @@ import TranHotBanner from '../../assets/tran_hot.png'
 import btnMore from '../../assets/btnMore.webp'
 import BannerBottomVideo from '../../assets/banner_video.gif'
 import CustomCard from '../../components/CustomCard/CustomCard'
+import { useEffect } from 'react'
 
 function Home() { 
-  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
       <Container fixed disableGutters sx={{ height : (theme) => theme.football.cardVideoHeight, width : { md : '70%', xs : '100%'} }}>
         <Box sx={{ p : { md : 0, xs : 0}, m : { md : 0, xs : 0} }}>

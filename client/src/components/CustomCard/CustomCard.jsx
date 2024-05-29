@@ -20,7 +20,7 @@ function CustomCard({ title, titleCard, thumbnail, description, titleMore }) {
         </Box>
         <Box sx={{ flexGrow: 1}}>
           <Grid container spacing={{ xs: 2, md: 3}} columns={{ xs: 2, sm: 8, md: 12 }}>
-            {Array.from(Array(6)).map((_, index) => (
+            {Array.from(Array(1)).map((_, index) => (
               <Grid item xs={2} sm={4} md={4} key={index}>
               <Item sx={{ boxShadow : 'none', bgcolor : '#000000', gap : 2, display : 'flex', borderColor : 'rgb(254 179 7)', border : 'none', px : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer' }}>
                 <img src={thumbnail} alt="" height='100%' width='100%' style={{ borderRadius: '20px', p : 0 }} />

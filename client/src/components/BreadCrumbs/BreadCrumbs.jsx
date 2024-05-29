@@ -37,7 +37,7 @@ function BreadCrumbs() {
             {breadcrumbs?.map((el) => {
                 return (
                     el?.link === "" &&  
-                        <Link to='/'  style={{ color : 'white', textDecoration : 'none' }}  key={el?.id}>
+                        <Link to='/'   style={{ color : 'white', textDecoration : 'none' }}  key={el?.id}>
                             {el?.name}
                         </Link>
                 )

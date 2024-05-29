@@ -2,7 +2,11 @@ import Container from '@mui/material/Container'
 import CustomCard from '../../components/CustomCard/CustomCard'
 import Box from '@mui/material/Box'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
+import { useEffect } from 'react'
 function VideoHighlight() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <Container disableGutters fixed >
         <Box sx={{ px : 4, pt: 2 }}>

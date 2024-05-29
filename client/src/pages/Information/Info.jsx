@@ -1,9 +1,10 @@
 import Container from '@mui/material/Container'
 import CustomCard from '../../components/CustomCard/CustomCard'
-import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 function Info() {
-    const location = useLocation()
-    console.log(location.pathname)
+    useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
   return (
     <Container disableGutters fixed >
          <CustomCard titleCard='Cẩm nang' titleMore='Vai trò của các vị trí trong bóng đá 5 người (Futsal)'

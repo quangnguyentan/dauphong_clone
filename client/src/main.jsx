@@ -7,14 +7,24 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
 } from '@mui/material/styles';
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import reduxStore from "./redux";
+
+const { store, persistor } = reduxStore();
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <CssVarsProvider theme={theme}>
-          <CssBaseline />
-          <App />
-      </CssVarsProvider>
-    </BrowserRouter>
-     
-  </React.StrictMode>,
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <React.StrictMode>
+        <BrowserRouter>
+          <CssVarsProvider theme={theme}>
+              <CssBaseline />
+              <App />
+          </CssVarsProvider>
+        </BrowserRouter>
+      
+      </React.StrictMode>,
+    </PersistGate>
+  </Provider>
+ 
 )
