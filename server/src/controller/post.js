@@ -13,7 +13,7 @@ export const getAllPost =  (req, res) => {
 }
 export const getPostsById =  (req, res) => {
   const { id } = req.params;
-  var sql = `SELECT * FROM posts WHERE ${id} ;`
+  var sql = `SELECT * FROM posts WHERE id = ${id} ;`
     db.execute(sql, function (error, results, fields) {
       if (error) throw error;
       return res.status(200).json({

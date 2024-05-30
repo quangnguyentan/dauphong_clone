@@ -4,7 +4,9 @@ const path = {
   VIDEO_HIGHLIGHT : "video-highlight",
   TIN_TUC : "tin-tuc",
   SOI_KEO : "soi-keo",
-  POST : "posts/:id",
+  POST : "/:id",
+  VIDEO : "video",
+
 
 
   

@@ -10,11 +10,12 @@ import VideoHighlight from "./pages/VideoHighlight/VideoHighlight";
 import Info from "./pages/Information/Info";
 import WatchSetBit from "./pages/WatchSetBit/WatchSetBit";
 import LiveStream from "./pages/LiveStream/LiveStream";
+import CustomCardById from "./pages/WatchSetBit/_id";
 
 function App() {
   
   return (
-   <Container disableGutters maxWidth={false} sx={{ height : 'fit-content', bgcolor : '#000000' }}>
+   <Container disableGutters maxWidth={false} sx={{ height : 'fit-content', bgcolor : '#1B1C21' }}>
      <ToastContainer
       position="top-right"
       autoClose={5000}
@@ -34,7 +35,9 @@ function App() {
         <Route path={path.VIDEO_HIGHLIGHT} element={<VideoHighlight />} />
         <Route path={path.TIN_TUC} element={<Info />} />
         <Route path={path.SOI_KEO} element={<WatchSetBit />} />
-        <Route path={path.POST} element={<LiveStream />} />
+        <Route path={path.POST} element={< CustomCardById/>} />
+        <Route path={path.VIDEO} element={< LiveStream/>} />
+
       </Route>
     </Routes>
    </Container>
