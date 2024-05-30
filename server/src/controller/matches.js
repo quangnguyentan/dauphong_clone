@@ -1,24 +1,24 @@
 import db from "../config/connectDB";
 
-export const getAllPost =  (req, res) => {
-    var sql = 'SELECT * FROM posts;'
+export const getAllMatches =  (req, res) => {
+    var sql = 'SELECT * FROM matches;'
       db.execute(sql, function (error, results, fields) {
         if (error) throw error;
         return res.status(200).json({
           success: results ? true : false,
-          post : results,
+          matches : results,
       });
     });
     
 }
-export const getPostsById =  (req, res) => {
+export const getMatchesById =  (req, res) => {
   const { id } = req.params;
-  var sql = `SELECT * FROM posts WHERE ${id} ;`
+  var sql = `SELECT * FROM matches WHERE ${id} ;`
     db.execute(sql, function (error, results, fields) {
       if (error) throw error;
       return res.status(200).json({
         success: results ? true : false,
-        postsId : results,
+        matchesId : results,
     });
   });
   

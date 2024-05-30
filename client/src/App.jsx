@@ -34,7 +34,7 @@ function App() {
         <Route path={path.VIDEO_HIGHLIGHT} element={<VideoHighlight />} />
         <Route path={path.TIN_TUC} element={<Info />} />
         <Route path={path.SOI_KEO} element={<WatchSetBit />} />
-        <Route path={path.ID} element={<LiveStream />} />
+        <Route path={path.POST} element={<LiveStream />} />
       </Route>
     </Routes>
    </Container>

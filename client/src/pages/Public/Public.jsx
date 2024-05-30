@@ -11,7 +11,7 @@ import BannerRight from '../../assets/banner_right.gif'
 function Public() {
   return (
     <Container disableGutters maxWidth={false}>
-      <Box sx={{ position : 'sticky', top : 0, }}>
+      <Box sx={{ position : 'sticky', top : 0, zIndex : 1 }}>
         <AppBar/>
         <Marquee/>
       </Box>
