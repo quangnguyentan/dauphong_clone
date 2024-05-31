@@ -16,7 +16,6 @@ function Home() {
     const response = await apiGetPosts()
     if(response.success) setPosts(response?.post)
   }
-  console.log(posts)
   useEffect(() => {
     window.scrollTo(0, 0)
     apiGetPost()
@@ -24,9 +23,9 @@ function Home() {
   return (
       <Container fixed disableGutters sx={{ height : (theme) => theme.football.cardVideoHeight, width : { md : '70%', xs : '100%'} }}>
         <Box sx={{ p : { md : 0, xs : 0}, m : { md : 0, xs : 0} }}>
-        <CardVideo/>
+        <CardVideo titleContent/>
         </Box>
-        <Box sx={{ width : '100%',bgcolor : '#000000', px : 4, borderRadius : '15px 15px 0 0 ' }}>
+        <Box sx={{ width : '100%',bgcolor : '#000000', px : 4, borderRadius : '15px ' }}>
           <Box sx={{ py : 2,justifyContent : 'center'}}>
             <img src={TranHotBanner} alt="" style={{  display : { md : 'flex', xs : 'none' }, objectFit : 'contain' }}   />
           </Box>
@@ -34,13 +33,17 @@ function Home() {
           <Box sx={{ py : 2,justifyContent : 'center', display : 'flex'}}>
             <img src={btnMore}  alt="" style={{  display : { md : 'flex', xs : 'none' }, objectFit : 'contain' }} />
           </Box>
-          <Box sx={{ width : '100%'}}>
-            <img src={BannerBottomVideo} style={{ height : '70px', width : '49%' }} alt="" /> 
-            <img src={BannerBottomVideo} style={{ height : '70px', width : '49%' }} alt="" />
-          </Box>
         </Box>
+        <Box sx={{ width : '100%', py :  { md :  1, xs : 0}, display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'} }}>
+            <Box sx={{ width : { md : '50%', xs : '100%'} }}>
+              <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+            </Box>
+            <Box sx={{ width : { md : '50%', xs : '100%'} }}>
+              <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+            </Box>
+          </Box>
        
-        {posts ? <CustomCard data={posts} title={'Soi kèo bóng đá'}/> : <CustomSkeleton/>}
+        {posts ? <CustomCard data={posts} title={'Soi kèo bóng đá'}/> : ''}
 
       </Container>
 

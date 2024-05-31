@@ -1,14 +1,19 @@
-import authRouter from "./auth";
-import userRouter from "./user";
+
 import postRouter from "./post";
 import matchesRouter from "./matches";
+import accountRouter from "./account";
+import streamRouter from "./stream";
+
 
 
 const initRoutes = (app) => {
-  app.use("/api/auth", authRouter);
-  app.use("/api/user", userRouter);
+
   app.use("/api/post", postRouter);
   app.use("/api/matches", matchesRouter);
+  app.use("/api/account", accountRouter);
+  app.use("/api/stream", streamRouter);
+
+
 
 };
 export default initRoutes;

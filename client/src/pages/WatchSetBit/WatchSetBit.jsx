@@ -22,7 +22,7 @@ function WatchSetBit() {
         <Box sx={{ px : 4, pt: 2 }}>
             <BreadCrumbs />
         </Box>
-        {posts ? <CustomCard data={posts} title={'Soi kèo bóng đá'}/> : <CustomSkeleton/>}
+        {posts ? <CustomCard data={posts} title={'Soi kèo bóng đá'}/> : ''}
     </Container>
   )
 }

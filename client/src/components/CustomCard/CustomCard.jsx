@@ -26,9 +26,9 @@ function CustomCard({ title,  data }) {
           <Grid container spacing={{ xs: 2, md: 3}} columns={{ xs: 2, sm: 8, md: 12 }}>
             { data?.filter(root => root.root_domain?.includes('sovo.link'))?.map(el => 
             <Grid item xs={2} sm={4} md={4} key={el?.id}>
-            <Link to={{ pathname : `/${el?.slug}`, search : `?id=${el?.id}`}} style={{ textDecoration : 'none' }}>
-              <Item sx={{ boxShadow : 'none', bgcolor : '#000000', gap : 2, display : 'flex', borderColor : 'rgb(254 179 7)', border : 'none', px : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer' }}>
-                <img src={el?.id === 2 ? 'https://tructiep2.dauphong2.live/wp-content/uploads/2024/04/Arsenal-BayernMunich.jpg' : el?.thumbnail_url  } alt="" height='100%' width='100%' style={{ borderRadius: '20px', p : 0, objectFit : 'cover' }} />
+            <Link to={{ pathname : `/news/${el?.slug}`, search : `?id=${el?.id}`}} style={{ textDecoration : 'none' }}>
+              <Item sx={{ boxShadow : 'none', bgcolor : '#1B1C21', gap : 2, display : 'flex', borderColor : 'rgb(254 179 7)', border : 'none', px : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer' }}>
+                <img src={el?.id === 2 ? 'https://tructiep2.dauphong2.live/wp-content/uploads/2024/04/Arsenal-BayernMunich.jpg' : el?.thumbnail_url  } alt="" height='100%' width='100%' style={{ borderRadius: '0 0 0 0 ', p : 0, objectFit : 'cover' }} />
                 <Box sx={{ flexDirection : 'column', gap : 2, display : 'flex',}}>
                   <Typography sx={{ color : '#21FF65', textTransform : 'capitalize' }} variant='span'>
                   {title}

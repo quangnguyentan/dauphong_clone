@@ -1,9 +1,9 @@
 // import { verifiToken } from "../middlewares/";
 import { isAdmin, verifyToken } from "../middlewares/verifyToken";
-import * as matchesController from "../controller/matches";
+import * as accountController from "../controller/account";
 const router = require("express").Router();
-router.get("/",  matchesController.getAllMatches);
-router.get("/:idMatches",  matchesController.getMatchesById);
+router.get("/",  accountController.getAllAccount);
+router.get("/:id",  accountController.getAccountById);
 
 
 module.exports = router;

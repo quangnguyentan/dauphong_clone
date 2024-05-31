@@ -8,13 +8,60 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 import Button from '@mui/material/Button';
 import '../../index.css'
 import { useEffect, useState } from 'react'
+import backgroundHeaderTitle from '../../assets/backgroundTitle.webp'
+import { apiGetAccountById } from '../../services/accountService'
+import { apiGetMatchesById } from '../../services/matchService'
+import { Link, useLocation, useParams } from 'react-router-dom'
+import { Chip, Typography } from '@mui/material'
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 const sources = {
  
   sintelTrailer: 'https://sovotv.live/uploads/resources/videos/introlivesovo.mp4',
   bunnyTrailer: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
 };
 
-function CardVideo({ ChatBox  }) {
+function CardVideo({ ChatBox, titleContent  }) {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const ids = params.get('idMatches');
+  const idAccount = params.get('idAccount');
+
+  console.log(ids)
+  const [matches, setMatches] = useState('')
+  const [account, setAccount] = useState('')
+
+  const apiGetAccount = async (ids) => {
+      const response = await apiGetAccountById(ids)
+      if(response.success) setAccount(response?.accountId)
+  }
+  const convertDate = (dateString ) => {
+    if(dateString){
+     const date = new Date(dateString);
+     const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
+     return formattedDate
+    } else{
+     const date = new Date();
+     const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
+     return formattedDate
+    }
+  }
+  const apiGetMatches = async (ids) => {
+    const response = await apiGetMatchesById(ids)
+    if(response.success) setMatches(response?.matchesId)
+}
+  useEffect(() => {
+      window.scrollTo(0, 0)
+      apiGetMatches(ids) && apiGetAccount(idAccount)
+  }, [])
+  console.log(account)
+  const styles = {
+    heroContainer: {
+      backgroundImage: `url('${backgroundHeaderTitle}')`,
+      backgroundPosition: 'bottom center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: '100% 100%',
+    }
+   };
   let interval = 6
   let timeArrow = 31
   const [changeSource, setChangeSource] = useState(sources.sintelTrailer)
@@ -52,10 +99,51 @@ function CardVideo({ ChatBox  }) {
      })
  }, [])
   return (
-     <Box sx={{ py : { md : 1, xs : 0}}} >
+     <Box sx={{ py : { md : 0, xs : 0}}} >
+    {!titleContent && matches  && <>
+      <Box sx={{ width : '100%', height : '170px', p : 0, display : 'flex', justifyContent : 'space-between', px : 8, alignItems : 'center', color : 'white'  }} style={styles.heroContainer}>
+          <Box sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
+            <img width='70px' height='70px' src={matches[0]?.host_club_logo_url} alt="" />
+            <Typography sx={{ fontSize : '14px' }}>
+              {matches[0]?.host_club_name}
+            </Typography>
+          </Box>
+        <Box  sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
+          <Link >
+              <Chip label='Chưa diễn ra' className='button_info' sx={{ color : 'white', borderRadius : '10px', fontWeight : 600, width : '90px', height: '30px', fontSize : '10px' }} />
+          </Link>
+          <Typography sx={{ fontSize : '25px' }}>
+              0 - 0
+          </Typography>
+          <Link >
+              <Chip label='Cược TA88 đảm bảo uy tín 100%' className='button_info' sx={{ color : 'white', borderRadius : '3px', fontWeight : 600, width : 'fit-content', height: '30px', fontSize : '10px' }} />
+          </Link>
+          <Link >
+              <Chip  label='Cược LUCKY88 đảo bảo uy tín 100%' className='button_info' sx={{ color : 'white', borderRadius : '3px', fontWeight : 600, width : 'fit-content', height: '30px', fontSize : '10px' }} />
+          </Link>
+        </Box>
+        <Box sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
+            <img width='70px' height='70px' src={matches[0]?.guest_club_logo_url} alt="" />
+            <Typography sx={{ fontSize : '14px' }}>
+              {matches[0]?.guest_club_name}
+            </Typography>
+        </Box>
+      </Box>
+      <Box sx={{ width : '100%', height : '60px', p : 0, display : 'flex', flexDirection : 'column', color : 'white', pt : 1   }}  >
+        <Box sx={{ fontSize : '15px', fontWeight : 600 }}>
+          Phát trực tiếp {matches[0]?.host_club_name} vs {matches[0]?.guest_club_name} vào lúc {matches[0]?.start_time?.slice(0, -3)}, ngày {convertDate(matches[0]?.start_date)}
+        </Box>
+        <Box sx={{ fontSize : '13px', fontStyle : 'italic', color : 'gray' }}>
+          {matches[0]?.tournament_name}
+        </Box>
+        
+      </Box>
+    </>}
       <Box sx={{ display : { md : 'flex' }, gap : 2 }}>
+      
         <Box sx={{ width : {md : '70%', xs : '100%'}, height : '100%'}} >
        <Box sx={{ position : 'absolute ', display : 'flex', width : {md : '43%', xs : '100%'}, justifyContent : 'space-between'}}> 
+       
        {/* {changeSource !== sources.bunnyTrailer && <Button variant="contained" style={{ position : 'absolute', zIndex : 1, 
         color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'default',
         right : { md : '68%'}, width : 'fit-cotent', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Video sẽ tự động bỏ qua sau {timeNext}</Button>} */}
@@ -86,7 +174,48 @@ function CardVideo({ ChatBox  }) {
           ]
         }/> */}
         
-         <img className='react-player1' src={BannerVideoFooter} style={{width : '100%', objectFit : 'contain'}} alt="" /> 
+         <img className='react-player1' src={BannerVideoFooter} style={{width : '100%',objectFit : 'contain'}} alt="" /> 
+       <Box sx={{ display : 'flex ', justifyContent : 'space-between' }}>
+       <Button variant='contained' lassName='button_info' endIcon={<KeyboardVoiceIcon/> } startIcon={<SkipNextIcon/>} sx={{ 
+            
+            bgcolor : 'gray', boxShadow :'none',  color : 'white', borderRadius : '10px', fontWeight : 600, width : 'fit-content', height: 'fit-content', fontSize : '10px', m : { xs : 1 } }}>
+           <Box >
+           <Typography sx={{ fontSize : '9px', textTransform : 'capitalize', display : { md : 'flex', xs : 'inline-block'} }}>
+              Người bình luận
+            </Typography> 
+            <Typography sx={{ fontSize : '9px', textTransform : 'capitalize', display : { md : 'none', xs : 'inline-block'}, px : 0.5 }}>
+              :
+            </Typography>
+            <Typography sx={{ fontSize : '10px',textTransform : 'capitalize', display :  { md : 'flex', xs : 'inline-block' } }}>
+              {account[0]?.name}
+            </Typography>
+           </Box>
+          </Button>
+          <Box sx={{ display : {xs : 'none', md : 'flex'} }}>
+          <Button variant='contained' lassName='button_info' startIcon={<SkipNextIcon/>} sx={{ 
+            bgcolor : 'gray', boxShadow :'none',  color : 'white', borderRadius : '10px', fontWeight : 600, width : 'fit-content', height: 'fit-content', fontSize : '10px', m : { xs : 1 } }}>
+           <Box >
+           <Typography sx={{ fontSize : '9px', textTransform : 'capitalize' }}>
+             Nhóm Telegram
+            </Typography>
+            <Typography sx={{ fontSize : '10px',textTransform : 'capitalize'  }}>
+              {account[0]?.name}
+            </Typography>
+           </Box>
+          </Button>
+          <Button variant='contained' lassName='button_info' startIcon={<SkipNextIcon/>} sx={{ 
+            bgcolor : 'gray', boxShadow :'none',  color : 'white', borderRadius : '10px', fontWeight : 600, width : 'fit-content', height: 'fit-content', fontSize : '10px', m : { xs : 1 } }}>
+           <Box >
+           <Typography sx={{ fontSize : '9px', textTransform : 'capitalize' }}>
+              Nhóm Facebook
+            </Typography>
+            <Typography sx={{ fontSize : '10px',textTransform : 'capitalize'  }}>
+              {account[0]?.name}
+            </Typography>
+           </Box>
+          </Button>
+          </Box>
+       </Box>
         </Box>
         {ChatBox ? 
         <Box sx={{   width : { md : "30%", xs : "100%"}, height : { md : "470px", xs : "350px"}  }}>
@@ -95,9 +224,13 @@ function CardVideo({ ChatBox  }) {
         : <CustomGrid size={12} flexDirectionStyle headerBox />}
 
       </Box>
-      <Box sx={{ width : '100%', py :  { md :  1, xs : 0} }}>
-          <img src={BannerBottomVideo} style={{ width : '50%', objectFit : 'contain' }} alt="" /> 
-          <img src={BannerBottomVideo} style={{ width : '50%', objectFit : 'contain' }} alt="" />
+      <Box sx={{ width : '100%', py :  { md :  1, xs : 0}, display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'} }}>
+          <Box sx={{ width : { md : '50%', xs : '100%'} }}>
+            <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+          </Box>
+          <Box sx={{ width : { md : '50%', xs : '100%'} }}>
+            <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+          </Box>
       </Box>
      </Box>
   )

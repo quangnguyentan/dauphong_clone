@@ -124,7 +124,7 @@ export default function DrawRight() {
             fontSize : 15,
             borderRadius : '0px',
             textDecoration : 'none',
-            background:  active ===  el?.id ? 'rgb(254 179 7)' : '' }} key={el?.id} onClick={() => setActive(el?.id)} >
+            background:  active ===  el?.id ? 'linear-gradient(50deg, #ff6427, #770000)' : '' }} key={el?.id} onClick={() => setActive(el?.id)} >
            {el?.name}  
         </Link>
       ))}

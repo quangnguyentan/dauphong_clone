@@ -1,25 +1,24 @@
 import db from "../config/connectDB";
 
-export const getAllMatches =  (req, res) => {
-    var sql = 'SELECT * FROM matches;'
+export const getAllStream=  (req, res) => {
+    var sql = 'SELECT * FROM streams;'
       db.execute(sql, function (error, results, fields) {
         if (error) throw error;
         return res.status(200).json({
           success: results ? true : false,
-          matches : results,
+          stream: results,
       });
     });
     
 }
-export const getMatchesById =  (req, res) => {
-  const { idMatches } = req.params;
-  console.log(idMatches)
-  var sql = `SELECT * FROM matches WHERE id =  ${idMatches} ;`
+export const getStreamById =  (req, res) => {
+  const { id } = req.params;
+  var sql = `SELECT * FROM streams WHERE ${id} ;`
     db.execute(sql, function (error, results, fields) {
       if (error) throw error;
       return res.status(200).json({
         success: results ? true : false,
-        matchesId : results,
+        streamId : results,
     });
   });
   

@@ -9,7 +9,12 @@ import Chip from '@mui/material/Chip'
 import { Link } from 'react-router-dom'
 import path from '../../utils/path'
 import { Container } from '@mui/material'
+import { apiGetMatches } from '../../services/matchService'
+import { useEffect, useState } from 'react'
+import { apiGetAccount } from '../../services/accountService'
 function CustomGrid({ size, flexDirectionStyle, headerBox }) {
+  const [matches, setMatches] = useState('')
+  const [account, setAccount] = useState('')
   const linkSetBit = 'https://nbet.vin/?a=0c077eb503c2ccc1362d615c6682ad71&utm_campaign=cpd&utm_source=dauphonglive&utm_medium=cuocfullsite&utm_content=branding'
   const styles = {
     heroContainer: {
@@ -29,6 +34,32 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
     color: theme.palette.text.secondary,
     height : 'fit-cotent'
   }))
+
+  const getApiMatches = async() => {
+    const response = await apiGetMatches()
+    if(response.success) setMatches(response.matches)
+  }
+  const getApiAccount = async() => {
+    const response = await apiGetAccount()
+    if(response.success) setAccount(response.account)
+  }
+  useEffect(() => {
+    getApiMatches() && getApiAccount()
+  }, [])
+ const convertDate = (dateString ) => {
+   if(dateString){
+    const date = new Date(dateString);
+    const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
+    return formattedDate
+   } else{
+    const date = new Date();
+    const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
+    return formattedDate
+   }
+ }
+ 
+  
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box sx={{ p : 0.5, mb : 2, color : 'white', width : '100%', border : 1, borderColor : 'white',  background : 'linear-gradient(50deg, #ff6427, #770000)', borderRadius : '5px', fontSize : '13px', fontWeight : 600, display : headerBox ? { md : 'flex' , xs : 'none'} : 'none' , justifyContent : 'center' }}>
@@ -84,7 +115,7 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
                     Chưa diễn ra 
                   </Typography>
                   <Link to={linkSetBit}>
-                    <Chip label='Đặt Cược' className='button_info' sx={{ borderRadius : '10px', fontWeight : 600, width : '90px', height: '30px', fontSize : '10px' }} />
+                    <Chip label='Đặt Cược' className='button_info' sx={{  background : 'linear-gradient(50deg, #ff6427, #770000)', borderRadius : '10px', fontWeight : 600, width : '90px', height: '30px', fontSize : '10px' }} />
                   </Link>
                   </Box>
                  </Box>
@@ -217,20 +248,22 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
         </Link>
         </Box> : 
         <Box sx={{ flexGrow: 1}}>
-          <Link to={`/${path.ID}`} style={{ textDecoration : 'none' }}>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12 }}>
-                {Array.from(Array(6)).map((_, index) => (
-                  <Grid item xs={2} sm={4} md={4} key={index}>
+                {matches && matches?.slice(0, 6)?.map((el) => (
+                 <>
+                 {account && account?.filter(acc => acc?.id === el?.account_id)?.map(result => (
+                    <Grid item xs={2} sm={4} md={4} key={el?.id}>
+                  <Link to={{ pathname : `/video/${el?.slug}`, search : `?idMatches=${el?.id}&idAccount=${result?.id}`}} style={{ textDecoration : 'none' }} >
                   <Item sx={{  borderRadius: '10px', border : 1, borderColor : 'white', p : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer', '&:hover' : {
                   transform : 'translateY(-3px)',
                   transitionDuration : '5s'
                 } }}>
                   <Box sx={{  color : 'white',  display : 'flex', alignItems : 'center', justifyContent : 'space-between', px : 2, borderTopRightRadius : '10px', borderTopLeftRadius : '10px', p : 1 , background : 'linear-gradient(50deg, #ff6427, #770000)' }}>
                   <Typography sx={{ fontSize : '15px', fontWeight : 600, color : 'white' }} >
-                      Euro U17
+                      {el?.tournament_name}
                   </Typography>
                   <Typography sx={{ fontSize : '15px', fontWeight : 600 }} >
-                    BLV Hàng Phò
+                   {result?.name}
                   </Typography>
                   </Box>
                   
@@ -238,24 +271,24 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
                   <Divider  sx={{  border : '1', borderColor : 'white' }}/>
                   <Box sx={{ color : 'white',  display : 'flex', alignItems : 'center', justifyContent : 'space-between', px : 2 }}>
                   <Box sx={{ flexDirection : 'column' }}>
-                  <img width='20px' height='20px' src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3f/Sweden_national_football_team_badge.svg/1200px-Sweden_national_football_team_badge.svg.png" alt="" />
+                  <img width='20px' height='20px' src={el?.host_club_logo_url} alt="" />
                   <Typography sx={{ fontSize : '14px' }}>
-                  Sweden U17
+                    {el?.host_club_name}
                   </Typography>
                 </Box>
                 
                   <Box sx={{ flexDirection : 'column' }}>
                     <Typography sx={{ fontSize : '15px', fontWeight : 600 }} >
-                      22:00 - 27/05
+                      {el?.start_time?.slice(0, -3)} - {convertDate(el?.start_date)}
                     </Typography>
                     <Typography sx={{ fontSize : '15px', fontWeight : 600, color : 'white' }} >
                       vs
                     </Typography>
                   </Box>
                 <Box sx={{ flexDirection : 'column' }}>
-                  <img width='20px' height='20px' src=" https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Logo_Italy_National_Womens_Football_Team_2023_%28no_stars%29.svg/800px-Logo_Italy_National_Womens_Football_Team_2023_%28no_stars%29.svg.png" alt="" />
+                  <img width='20px' height='20px' src={el?.guest_club_logo_url} alt="" />
                   <Typography sx={{ fontSize : '14px' }}>
-                  Italy U17
+                    {el?.guest_club_name}
                   </Typography>
                 
                 </Box>
@@ -271,10 +304,12 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
                   </Box>
                  </Box>
             </Item>
+          </Link>
                   </Grid>
+                  ))}
+                 </>
                 ))}
             </Grid>
-          </Link>
     </Box>}
   </Box>
   )
