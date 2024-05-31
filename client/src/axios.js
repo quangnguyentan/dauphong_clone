@@ -1,6 +1,6 @@
 import axios from "axios";
 const instance = axios.create({
-  baseURL: 'http://localhost:5000/',
+  baseURL: 'https://sovo-server-1.onrender.com/',
 });
 instance.interceptors.request.use(
   function (config) {

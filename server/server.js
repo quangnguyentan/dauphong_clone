@@ -8,12 +8,11 @@ import connectDB from "./src/config/connectDB";
 require("./src/passport/index");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
     methods: ["GET", "PUT", "POST", "DELETE"],
-    credentials: true,
+    credentials: false,
   })
 );
 initRoutes(app);

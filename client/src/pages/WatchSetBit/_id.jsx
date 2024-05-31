@@ -28,7 +28,7 @@ function CustomCardById({ title,  data }) {
   return (
     <>
     {posts && <Container fixed disableGutters sx={{ height : (theme) => theme.football.cardVideoHeight, width : { md : '70%', xs : '100%'} }}>
-    <Box sx={{ p : { md : 0, xs : 1}, m : { md : 0, xs : 0} }}>
+    <Box sx={{ p : { md : 0, xs : 2}, m : { md : 0, xs : 0} }}>
     <div style={{ color : 'white' }} dangerouslySetInnerHTML={
     { __html: posts[0]?.content }} />
     </Box>

@@ -3,14 +3,26 @@
   color : white;
   background-color: blue !important;
 }
+
 img {
   max-width: 100%;
   height: auto;
   padding: 0;
   margin: 0;
+ 
+}
+.tran_hot_banner {
+  filter:hue-rotate(-50deg);
+  -webkit-mask:linear-gradient(50deg, #ff6427 -2.23%, #770000 117.28%);
+}
+.show_more_banner {
+  filter:hue-rotate(-50deg);
+  -webkit-mask:linear-gradient(50deg, #ff6427 -2.23%, #770000 117.28%);
 }
 .button_info {
-  background:  linear-gradient(96deg, #008360 -2.23%, #49EC44 117.28%);
+  /* background:  linear-gradient(96deg, #008360 -2.23%, #49EC44 117.28%); */
+  background:   linear-gradient(50deg, #ff6427 -2.23%, #770000 117.28%);
+
   border-radius: 0px;
   color: #fff;
   background-size: 400% 400%;

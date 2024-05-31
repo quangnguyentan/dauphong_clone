@@ -112,7 +112,7 @@ export default function DrawRight() {
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
           <Box sx={{ color : 'white' }}>
-           <img width={140} height={80} src={logo} alt="" />
+           <img width={140} height={60} style={{ objectFit : 'cover' }} src={logo} alt="" />
           </Box>
         </DrawerHeader>
         <Divider />

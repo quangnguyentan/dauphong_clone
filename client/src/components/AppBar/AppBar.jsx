@@ -10,8 +10,8 @@ function AppBar() {
 
   return (
     <Box sx={{ height : (theme) =>theme.football.appBarHeight, width: '100%', overflowY : 'hidden', overflowX: 'auto', '&::webkit-scrollbar-track' : {
-      m : 4
-    }, backgroundColor : '#2b2b2b' , px : { sm : 0, md : 32, xs : 0}, display : 'flex', alignItems : 'center', justifyContent : 'space-between'  }} >
+      m : 2
+    }, backgroundColor : '#2b2b2b' , px : { sm : 0, md : 32, xs : 1}, display : 'flex', alignItems : 'center', justifyContent : 'space-between'  }} >
           <Link to='/' >
             <img src={logo} style={{ objectFit : 'cover', minWidth : '160px' }} alt="logo"  width={200} height={70}  />
           </Link>

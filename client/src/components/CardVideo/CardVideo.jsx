@@ -12,21 +12,37 @@ import backgroundHeaderTitle from '../../assets/backgroundTitle.webp'
 import { apiGetAccountById } from '../../services/accountService'
 import { apiGetMatchesById } from '../../services/matchService'
 import { Link, useLocation, useParams } from 'react-router-dom'
-import { Chip, Typography } from '@mui/material'
+import { Chip, Container, Typography } from '@mui/material'
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
-const sources = {
- 
-  sintelTrailer: 'https://sovotv.live/uploads/resources/videos/introlivesovo.mp4',
-  bunnyTrailer: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
-};
+import { apiGetADS } from '../../services/adsService'
 
-function CardVideo({ ChatBox, titleContent  }) {
+
+function CardVideo({ ChatBox, titleContent,blv }) {
+  const [ads, setAds] = useState('')
+
+  const apiGetAllADS = async() => {
+    const response = await apiGetADS()
+    if(response?.success) {
+      const filter = response?.ads?.filter(f => f?.root_domain === "sovo.link" && f?.position === "START_VIDEO" )?.map(el => {
+        return el
+      })
+      setAds(filter[0])
+    }
+  }
+  useEffect(() => {
+    apiGetAllADS()
+  }, [])
+  console.log(ads)
+  const sources = {
+    sintelTrailer : ads ? ads?.file_url : 'https://sovotv.live/uploads/resources/videos/67aee69f05e555769b7c925b6d36aeb7.mp4',
+    // sintelTrailer: 'https://sovotv.live/uploads/resources/videos/67aee69f05e555769b7c925b6d36aeb7.mp4',
+    bunnyTrailer: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
+  };
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const ids = params.get('idMatches');
   const idAccount = params.get('idAccount');
 
-  console.log(ids)
   const [matches, setMatches] = useState('')
   const [account, setAccount] = useState('')
 
@@ -53,7 +69,6 @@ function CardVideo({ ChatBox, titleContent  }) {
       window.scrollTo(0, 0)
       apiGetMatches(ids) && apiGetAccount(idAccount)
   }, [])
-  console.log(account)
   const styles = {
     heroContainer: {
       backgroundImage: `url('${backgroundHeaderTitle}')`,
@@ -72,14 +87,14 @@ function CardVideo({ ChatBox, titleContent  }) {
     if(interval < 0) return
     return interval
   }
-  const changeArrowTime = () => {
-    timeArrow--
-    if(timeArrow < 0) {
-      setChangeSource(sources.bunnyTrailer )
-      return
-    }
-    return timeArrow
-  }
+  // const changeArrowTime = () => {
+  //   timeArrow--
+  //   if(timeArrow < 0) {
+  //     setChangeSource(sources.bunnyTrailer )
+  //     return
+  //   }
+  //   return timeArrow
+  // }
   useEffect(() => {
      const timeInterVal = setInterval(() => { 
         const newTime = changeTime()
@@ -89,37 +104,37 @@ function CardVideo({ ChatBox, titleContent  }) {
         clearInterval(timeInterVal)
       })
   }, [])
-  useEffect(() => {
-    const timeNextArrow = setInterval(() => { 
-       const newTimeArrow = changeArrowTime()
-       setTimeNext(newTimeArrow)
-     }, 1000)
-     return (() => {
-       clearInterval(timeNextArrow)
-     })
- }, [])
+//   useEffect(() => {
+//     const timeNextArrow = setInterval(() => { 
+//        const newTimeArrow = changeArrowTime()
+//        setTimeNext(newTimeArrow)
+//      }, 1000)
+//      return (() => {
+//        clearInterval(timeNextArrow)
+//      })
+//  }, [])
   return (
      <Box sx={{ py : { md : 0, xs : 0}}} >
-    {!titleContent && matches  && <>
-      <Box sx={{ width : '100%', height : '170px', p : 0, display : 'flex', justifyContent : 'space-between', px : 8, alignItems : 'center', color : 'white'  }} style={styles.heroContainer}>
+    {!titleContent && matches  && <Container disableGutters >
+      <Box sx={{ width : '100%', height : '170px', p : 0, display : { md : 'flex', xs : 'flex'}, gap : 4, justifyContent : 'space-between', px : 8, alignItems : 'center', color : 'white'  }} style={styles.heroContainer}>
           <Box sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
             <img width='70px' height='70px' src={matches[0]?.host_club_logo_url} alt="" />
             <Typography sx={{ fontSize : '14px' }}>
               {matches[0]?.host_club_name}
             </Typography>
           </Box>
-        <Box  sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
-          <Link >
+        <Box sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
+          <Link style={{ textDecoration : 'none' }} >
               <Chip label='Chưa diễn ra' className='button_info' sx={{ color : 'white', borderRadius : '10px', fontWeight : 600, width : '90px', height: '30px', fontSize : '10px' }} />
           </Link>
           <Typography sx={{ fontSize : '25px' }}>
               0 - 0
           </Typography>
-          <Link >
-              <Chip label='Cược TA88 đảm bảo uy tín 100%' className='button_info' sx={{ color : 'white', borderRadius : '3px', fontWeight : 600, width : 'fit-content', height: '30px', fontSize : '10px' }} />
+          <Link style={{ textDecoration : 'none' }} >
+              <Chip label='Cược TA88 đảm bảo uy tín 100%' className='button_info' sx={{ display : { md : 'flex', xs : 'none'} ,color : 'white', borderRadius : '3px', fontWeight : 600, width : 'fit-content', height: '30px', fontSize : '10px' }} />
           </Link>
-          <Link >
-              <Chip  label='Cược LUCKY88 đảo bảo uy tín 100%' className='button_info' sx={{ color : 'white', borderRadius : '3px', fontWeight : 600, width : 'fit-content', height: '30px', fontSize : '10px' }} />
+          <Link style={{ textDecoration : 'none' }}>
+              <Chip  label='Cược LUCKY88 đảo bảo uy tín 100%' className='button_info' sx={{ display : { md : 'flex', xs : 'none'} , color : 'white', borderRadius : '3px', fontWeight : 600, width : 'fit-content', height: '30px', fontSize : '10px' }} />
           </Link>
         </Box>
         <Box sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
@@ -138,25 +153,27 @@ function CardVideo({ ChatBox, titleContent  }) {
         </Box>
         
       </Box>
-    </>}
+    </Container>}
       <Box sx={{ display : { md : 'flex' }, gap : 2 }}>
       
         <Box sx={{ width : {md : '70%', xs : '100%'}, height : '100%'}} >
-       <Box sx={{ position : 'absolute ', display : 'flex', width : {md : '43%', xs : '100%'}, justifyContent : 'space-between'}}> 
+       <Box sx={{ position : 'absolute ', display : 'flex', width : {md : '43%', xs : '95%'}, justifyContent : 'space-between'}}> 
        
        {/* {changeSource !== sources.bunnyTrailer && <Button variant="contained" style={{ position : 'absolute', zIndex : 1, 
         color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'default',
         right : { md : '68%'}, width : 'fit-cotent', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Video sẽ tự động bỏ qua sau {timeNext}</Button>} */}
-        {changeSource !== sources.bunnyTrailer ? time === 0 || time === undefined ? <Button endIcon={<SkipNextIcon/>} onClick={() => setChangeSource(sources.bunnyTrailer)} variant="contained" style={{ position : 'absolute', zIndex : 1, 
+        {ads && changeSource !== sources.bunnyTrailer ? time === 0 || time === undefined ? <Button endIcon={<SkipNextIcon/>} onClick={() => setChangeSource(sources.bunnyTrailer)} variant="contained" style={{ position : 'absolute', zIndex : 1, 
         color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'pointer', right : 20, width : 'fit-content', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Bỏ qua </Button> : <Button endIcon={<SkipNextIcon/>} variant="contained" style={{ position : 'absolute', zIndex : 1, 
         color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'default', right : 20, width : 'fit-content', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Có thể bỏ qua {time}</Button> : ''}</Box>
-        <Player width='100%' height='100%' src={changeSource} autoPlay className='customIcon' poster={changeSource === sources.bunnyTrailer ? 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4' : '' } >
-          <ControlBar autoHide={false} disableDefaultControls > 
-            <ReplayControl seconds={10} order={2.2}  />
-          </ControlBar>
-          <BigPlayButton position="center" />
-          <LoadingSpinner />
-        </Player>
+        <Box sx={{ width : '100%', height : '100%' }}>
+         {ads && <Player width='100%' height='100%' src={changeSource} autoPlay className='customIcon' poster={changeSource === sources.bunnyTrailer ? 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4' : '' } >
+            <ControlBar autoHide={false} disableDefaultControls > 
+              <ReplayControl seconds={10} order={2.2}  />
+            </ControlBar>
+            <BigPlayButton position="center" />
+            <LoadingSpinner />
+          </Player>}
+        </Box>
         {/* <ReactPlayer width='100%'
             height='100%' playIcon volume={1} controls={true} url={
           [
@@ -175,7 +192,8 @@ function CardVideo({ ChatBox, titleContent  }) {
         }/> */}
         
          <img className='react-player1' src={BannerVideoFooter} style={{width : '100%',objectFit : 'contain'}} alt="" /> 
-       <Box sx={{ display : 'flex ', justifyContent : 'space-between' }}>
+        {!blv && ads && <>
+          <Box sx={{ display : 'flex ', justifyContent : 'space-between' }}>
        <Button variant='contained' lassName='button_info' endIcon={<KeyboardVoiceIcon/> } startIcon={<SkipNextIcon/>} sx={{ 
             
             bgcolor : 'gray', boxShadow :'none',  color : 'white', borderRadius : '10px', fontWeight : 600, width : 'fit-content', height: 'fit-content', fontSize : '10px', m : { xs : 1 } }}>
@@ -216,6 +234,7 @@ function CardVideo({ ChatBox, titleContent  }) {
           </Button>
           </Box>
        </Box>
+        </>}
         </Box>
         {ChatBox ? 
         <Box sx={{   width : { md : "30%", xs : "100%"}, height : { md : "470px", xs : "350px"}  }}>
