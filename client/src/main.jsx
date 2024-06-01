@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </CssVarsProvider>
         </BrowserRouter>
       
-      </React.StrictMode>,
+      </React.StrictMode>
     </PersistGate>
   </Provider>
  

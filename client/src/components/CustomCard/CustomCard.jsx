@@ -18,7 +18,7 @@ function CustomCard({ title,  data }) {
   return (
     <Box sx={{  pb: 1, width : '100%', px : 4 }}>
         <Box sx={{ py : 4,justifyContent : 'center'}}>
-          <Typography sx={{ color : '#21FF65', fontWeight : 600, display : 'flex', justifyContent : 'center',textTransform : 'uppercase' }} variant='h4'>
+          <Typography sx={{ color : '#ff6427', fontWeight : 600, display : 'flex', justifyContent : 'center',textTransform : 'uppercase' }} variant='h4'>
           {title}
           </Typography>
         </Box>
@@ -30,7 +30,7 @@ function CustomCard({ title,  data }) {
               <Item sx={{ boxShadow : 'none', bgcolor : '#1B1C21', gap : 2, display : 'flex', borderColor : 'rgb(254 179 7)', border : 'none', px : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer' }}>
                 <img src={el?.id === 2 ? 'https://tructiep2.dauphong2.live/wp-content/uploads/2024/04/Arsenal-BayernMunich.jpg' : el?.thumbnail_url  } alt="" height='100%' width='100%' style={{ borderRadius: '0 0 0 0 ', p : 0, objectFit : 'cover' }} />
                 <Box sx={{ flexDirection : 'column', gap : 2, display : 'flex',}}>
-                  <Typography sx={{ color : '#21FF65', textTransform : 'capitalize' }} variant='span'>
+                  <Typography sx={{ color : '#ff6427', textTransform : 'capitalize' }} variant='span'>
                   {title}
                   </Typography>
                   <Typography sx={{  

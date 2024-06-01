@@ -51,18 +51,27 @@ function Home() {
           </Box>
         </Box>
         <Box sx={{ width : '100%', py :  { md :  1, xs : 0}, display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'} }}>
-            <Box sx={{ width : { md : '50%', xs : '100%'} }}>
-              <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
-            </Box>
-            <Box sx={{ width : { md : '50%', xs : '100%'} }}>
-              <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
-            </Box>
-          </Box>
-       
+           <Box sx={{ width : '100%' }}>
+            <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
+              <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
+           </Box>
+          
+           <Box sx={{ width : '100%' }}>
+            <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
+              <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
+           </Box>
+        </Box>
+
         {posts ? <CustomCard data={posts} title={'Soi kèo bóng đá'}/> : ''}
-
       </Container>
-
   )
 }
 

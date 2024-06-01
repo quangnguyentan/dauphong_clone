@@ -1,8 +1,7 @@
 const path = {
   PUBLIC: "/",
   HOME: "",
-  VIDEO_HIGHLIGHT : "video-highlight",
-  TIN_TUC : "tin-tuc",
+  TOP_NHA_CAI : "top-nha-cai",
   SOI_KEO : "soi-keo",
   POST : "news/:id",
   VIDEO : "video/:idMatches",

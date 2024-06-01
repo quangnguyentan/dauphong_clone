@@ -18,7 +18,7 @@ function WatchSetBit() {
   console.log(posts)
   
   return (
-    <Container disableGutters fixed >
+    <Container disableGutters fixed  maxWidth='lg' sx={{ maxWidth : { md : 'md', xl : 'lg', xs : 'sm'}, px : { md : 8} }}>
         <Box sx={{ px : 4, pt: 2 }}>
             <BreadCrumbs />
         </Box>

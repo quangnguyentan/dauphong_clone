@@ -16,10 +16,13 @@ import { Chip, Container, Typography } from '@mui/material'
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import { apiGetADS } from '../../services/adsService'
 
-
+import bannerLeft from '../../assets/banner_header_left.gif'
+import bannerRight from '../../assets/banner_header_right.gif'
 function CardVideo({ ChatBox, titleContent,blv }) {
   const [ads, setAds] = useState('')
-
+  const chatBoxIframe =  <Box sx={{   width : { md : "30%", xs : "100%"}, height : { md : "470px", xs : "350px"}  }}>
+  <iframe src="https://www5.cbox.ws/box/?boxid=949782&boxtag=pXQtQ5" width="100%" height="100%" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>	
+  </Box>
   const apiGetAllADS = async() => {
     const response = await apiGetADS()
     if(response?.success) {
@@ -115,8 +118,18 @@ function CardVideo({ ChatBox, titleContent,blv }) {
 //  }, [])
   return (
      <Box sx={{ py : { md : 0, xs : 0}}} >
-    {!titleContent && matches  && <Container disableGutters >
-      <Box sx={{ width : '100%', height : '170px', p : 0, display : { md : 'flex', xs : 'flex'}, gap : 4, justifyContent : 'space-between', px : 8, alignItems : 'center', color : 'white'  }} style={styles.heroContainer}>
+    {!titleContent && matches  && <Container disableGutters sx={{ py : { md : 0, xs : 2} }} >
+      <Container disableGutters  fixed sx={{  height :  { xs : '30px', md : '100%' }, width : { xs : '100%', md : '100%'}}}>
+        <Box sx={{ py : 0,width : '100%' }}>
+            <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
+              <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
+          </Box>
+      </Container>
+      <Box sx={{ pt : 12 ,width : '100%', height : '170px',  display : { md : 'flex', xs : 'flex'}, gap : 4, justifyContent : 'space-between', px : 8, alignItems : 'center', color : 'white'  }} style={styles.heroContainer}>
           <Box sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
             <img width='70px' height='70px' src={matches[0]?.host_club_logo_url} alt="" />
             <Typography sx={{ fontSize : '14px' }}>
@@ -165,14 +178,39 @@ function CardVideo({ ChatBox, titleContent,blv }) {
         {ads && changeSource !== sources.bunnyTrailer ? time === 0 || time === undefined ? <Button endIcon={<SkipNextIcon/>} onClick={() => setChangeSource(sources.bunnyTrailer)} variant="contained" style={{ position : 'absolute', zIndex : 1, 
         color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'pointer', right : 20, width : 'fit-content', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Bỏ qua </Button> : <Button endIcon={<SkipNextIcon/>} variant="contained" style={{ position : 'absolute', zIndex : 1, 
         color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'default', right : 20, width : 'fit-content', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Có thể bỏ qua {time}</Button> : ''}</Box>
+        
+        <Box sx={{ position : 'absolute ', display : 'flex', width : {md : '37%', xs : '75%'}, justifyContent : 'space-between'}}> 
+        <Box sx={{ position : 'absolute', zIndex : 1, 
+            cursor : 'pointer', top : {md : '410px', xs : '170px'}, left : 10, objectFit : 'contain',  width : {md : '90px', xs : '50px'}  }}>
+          <img src='https://tructiep2.dauphong2.live/wp-content/uploads/2024/05/CPD_Logo_290x108.gif' style={{}} alt="" />  
+          </Box>
+        <Box sx={{objectFit : 'contain',  position : 'absolute', zIndex : 1, right : 0, display :' flex', gap : {md : 2, xs : 1},
+            color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'pointer', top : {md : '410px', xs : '170px'},  width : '90px'  }}>
+        <Link style={{ textDecoration : 'none' }}>
+            <Chip label='Đặt Cược' className='button_info' sx={{ borderRadius : '10px', fontWeight : 600, width : {md : '80px', xs : '80px'}, height: {md : '30px', xs :'20px'}, fontSize : '10px',
+           
+             }} />
+        </Link>
+        <Link style={{ textDecoration : 'none' }}>
+            <Chip label='Đặt Cược' className='button_info' sx={{ borderRadius : '10px', fontWeight : 600, width : {md : '80px', xs : '80px'}, height: {md : '30px', xs :'20px'}, fontSize : '10px',
+            }} />
+        </Link>
+        </Box>
+        <Link style={{ textDecoration : 'none' }}>
+            <Chip label='Đặt Cược' className='button_info' sx={{ borderRadius : '5px', fontWeight : 600, width : '120px', height: '40px', fontSize : '10px' }} />
+        </Link>
+        </Box>
+
         <Box sx={{ width : '100%', height : '100%' }}>
-         {ads && <Player width='100%' height='100%' src={changeSource} autoPlay className='customIcon' poster={changeSource === sources.bunnyTrailer ? 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4' : '' } >
-            <ControlBar autoHide={false} disableDefaultControls > 
+         
+         {ads && <Player width='100%' height='100%' src={changeSource}  autoPlay className='customIcon' poster={changeSource === sources.bunnyTrailer ? 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4' : '' } >
+            <ControlBar autoHide={false} disableDefaultControls  > 
               <ReplayControl seconds={10} order={2.2}  />
             </ControlBar>
             <BigPlayButton position="center" />
             <LoadingSpinner />
           </Player>}
+
         </Box>
         {/* <ReactPlayer width='100%'
             height='100%' playIcon volume={1} controls={true} url={
@@ -237,20 +275,26 @@ function CardVideo({ ChatBox, titleContent,blv }) {
         </>}
         </Box>
         {ChatBox ? 
-        <Box sx={{   width : { md : "30%", xs : "100%"}, height : { md : "470px", xs : "350px"}  }}>
-        <iframe src="https://www5.cbox.ws/box/?boxid=949782&boxtag=pXQtQ5" width="100%" height="100%" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>	
-        </Box>
+        chatBoxIframe
         : <CustomGrid size={12} flexDirectionStyle headerBox />}
 
       </Box>
-      <Box sx={{ width : '100%', py :  { md :  1, xs : 0}, display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'} }}>
+      <Box sx={{ width : '100%' }}>
+            <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
+              <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
+           </Box>
+      {/* <Box sx={{ width : '100%', py :  { md :  1, xs : 0}, display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'} }}>
           <Box sx={{ width : { md : '50%', xs : '100%'} }}>
             <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
           </Box>
           <Box sx={{ width : { md : '50%', xs : '100%'} }}>
             <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
           </Box>
-      </Box>
+      </Box> */}
      </Box>
   )
 }
