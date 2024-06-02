@@ -120,14 +120,15 @@ function CardVideo({ ChatBox, titleContent,blv }) {
      <Box sx={{ py : { md : 0, xs : 0}}} >
     {!titleContent && matches  && <Container disableGutters sx={{ py : { md : 0, xs : 2} }} >
       <Container disableGutters  fixed sx={{  height :  { xs : '30px', md : '100%' }, width : { xs : '100%', md : '100%'}}}>
-        <Box sx={{ py : 0,width : '100%' }}>
-            <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+      <Box sx={{ width : '100%',  display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'} }}>
+            <Box sx={{ width : { md : '50%', xs : '100%'} }}>
                 <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
               </Box>
-              <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+              <Box sx={{ width : { md : '50%', xs : '100%'} }}>
                 <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
               </Box>
-          </Box>
+           </Box>
+  
       </Container>
       <Box sx={{ pt : 12 ,width : '100%', height : '170px',  display : { md : 'flex', xs : 'flex'}, gap : 4, justifyContent : 'space-between', px : 8, alignItems : 'center', color : 'white'  }} style={styles.heroContainer}>
           <Box sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
@@ -279,11 +280,11 @@ function CardVideo({ ChatBox, titleContent,blv }) {
         : <CustomGrid size={12} flexDirectionStyle headerBox />}
 
       </Box>
-      <Box sx={{ width : '100%' }}>
-            <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+      <Box sx={{ width : '100%',  display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'} }}>
+            <Box sx={{ width : { md : '50%', xs : '100%'} }}>
                 <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
               </Box>
-              <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+              <Box sx={{ width : { md : '50%', xs : '100%'} }}>
                 <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
               </Box>
            </Box>
